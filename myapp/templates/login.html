@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 min-h-screen flex items-center justify-center">
+
+<form action="" method="post" class="bg-white p-10 rounded-xl shadow-2xl w-full max-w-md space-y-4">
+    {% csrf_token %}
+    <h1 class="text-3xl font-bold text-center text-gray-800">Login</h1>
+    <p class="text-center text-gray-500 mb-4">Enter your credentials to log in</p>
+
+    
+    {% if context %}
+        <p class="text-red-500 text-center font-medium">{{ context }}</p>
+    {% endif %}
+
+    <div class="flex flex-col gap-2">
+        <span class="text-gray-700 font-medium">Username</span>
+        <input type="text" name="username" placeholder="Enter your username"
+               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+    </div>
+
+    <div class="flex flex-col gap-2">
+        <span class="text-gray-700 font-medium">Password</span>
+        <input type="password" name="password" placeholder="Enter your password"
+               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400">
+    </div>
+
+    <button type="submit"
+            class="w-full mt-4 bg-purple-500 hover:bg-purple-600 text-white p-3 rounded-lg transition">
+        Login
+    </button>
+
+    <p class="text-center text-gray-500 mt-4">
+        Don't have an account? 
+        <a href="{% url 'register' %}" class="text-purple-500 font-semibold hover:underline">Register</a>
+    </p>
+</form>
+
+</body>
+</html>

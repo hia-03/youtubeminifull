@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'src/output.css' %}">
+</head>
+<body>
+    <header class="bg-[blue]">
+        <nav class="max-w-[1200px] m-auto p-[20px] flex justify-between items-center">
+              <img src="{% static 'img/YouTube-Logo.png' %}" alt="das" width="150px">
+              <ul class="flex gap-[120px]">
+                <li><a href="">Views Posts</a></li>
+                <li><a href="">Views Posts</a></li>
+              </ul>
+              <ul class="flex gap-[120px]">
+                <a href="{% url 'login' %}"><button>Login</button></a>
+                <a href="{% url 'register' %}"><button>Register</button></a>
+              </ul>
+        </nav>
+    </header>
+
+</body>
+</html>
