@@ -25,29 +25,48 @@ def register(request):
 
 
 
+
+
 def home(request):
+
     return render(request,'home.html')
+    
 
-def home(request):
-    try:
-        if request.session['id']:
-            return render(request,'homelogins.html')
-    except:
-        return render(request,'home.html')
+def homelogins(request):
+    
+        if  request.session['id']:
+            print('Hello world')
+            return render(request,'homelogins.html',{'context': 'Welcome to admin panel'})
+    
+        return redirect('home')
 
+
+# def login(request):
+#     if request.method=='POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+
+#         user = User.objects.get(username=username,password=password)
+
+#         if user:
+#             request.session['id']=user.id
+#             return redirect('home')
+#         return render(request,'login.html',{'context': 'wrong username or password'})
+#     return render(request,'login.html')
 
 def login(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        try:
+            user = User.objects.get(username=username, password=password)
+            print('Hello world')
+            request.session['id'] = user.id
+            return redirect('loginhome')
+        except:
+            return render(request, 'login.html', {'context': 'Wrong username or password'})
+    return render(request, 'login.html')
 
-        user = User.objects.get(username=username,password=password)
-
-        if user:
-            request.session['id']=user.id
-            return redirect('home')
-        return render(request,'login.html',{'context': 'wrong username or password'})
-    return render(request,'login.html')
 
 
 
@@ -93,9 +112,6 @@ def user_get_by_id(request, id):
     return render(request, 'myvideo.html', {'users': users, 'posts': posts})
 
 
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post
-from django.contrib.auth.models import User
 
 def update_post(request, id):
     post = get_object_or_404(Post, id=id)

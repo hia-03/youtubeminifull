@@ -9,14 +9,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header class="bg-[blue]">
+    <header class="bg-[#cbff1f]">
         <nav class="max-w-[1200px] m-auto p-[20px] flex justify-between items-center">
+           {% if context %}
+            <p>{{ context }}</p>
+            {% endif %}
               <img src="{% static 'img/YouTube-Logo.png' %}" alt="das" width="150px">
               <ul class="flex gap-[120px]">
                 <li><a href="">Views Users</a></li>
                 <li><a href="">Views Posts</a></li>
                 <li><a href="{% url 'create-post' %}">Add Posts</a></li>
-                <li><a href="{% url 'user_by_id' users.id %}">My posts</a></li>
+                
               </ul>
               <ul class="flex gap-[120px]">
                   <a href="{% url 'register' %}"><button>My Profile </button></a>
